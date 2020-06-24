@@ -37,7 +37,7 @@ You can create your own environment variables in your site dashboard under `Sett
 `Variable values set under site settings will override the team-level settings.`
 
 <!-- Markdown snippet -->
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sekmet/editorial-html5up-gatsby-shopify)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sekmet/rapesagrado-test)
 
 # 💡 Features
 
