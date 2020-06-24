@@ -1,0 +1,16 @@
+{
+  "verbose": false,
+  "shopCurrency": "BRL",
+  "itemMetaDescriptionTpl": "Compre agora %SHOPIFYPRODUCTNAME%.  Conecte-se com a energia ancestral - Rapé Sagrado. Faça uma visita!",
+  "shopBtnlabel": "Comprar",
+  "shopMetaDescriptionTpl": "Procurando a melhor loja para comprar rapé? Aqui você encontra rapés indígenas de diversos feitores, preparados para você. Clique aqui e confira!",
+  "itemMetaTitleTpl": " %SHOPIFYPRODUCTNAME% a pronta entrega.",
+  "tagMetaDescriptionTpl": "Loja especializada em %SHOPIFYPRODUCTTAG%. Conecte-se com a energia ancestral. Entregamos para todo o Brasil. Confira!",
+  "shopMetaTitleTpl": "Rapé Sagrado - Loja Especializada em Rapé.",
+  "productPath": "/p",
+  "categorySloganTpl": "%SHOPIFYPRODUCTTAG%",
+  "basePath": "/loja",
+  "tagMetaTitleTpl": "Compre %SHOPIFYPRODUCTTAG% aqui no Rapé Sagrado",
+  "shopTagline": "Produtos",
+  "tagPath": "/c"
+}

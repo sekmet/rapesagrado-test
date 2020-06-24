@@ -1,0 +1,15 @@
+{
+  "title": "Rapé Sagrado",
+  "description": "This barebones starter ships with the main Gatsby configuration files you might need.",
+  "siteUrl": "https://rapesagrado.com.br",
+  "siteLogo": "https://editorial-html5up-gatsby.netlify.com/logo.jpg",
+  "author": "@2600hz",
+  "frontpage": {
+    "show_articles": true,
+    "show_products": false
+  },
+  "blog": {
+    "front_limit": 1,
+    "author": "Rape Sagrado"
+  }
+}

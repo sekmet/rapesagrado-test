@@ -1,0 +1,340 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "content/posts"
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publication URL", name: "path", widget: "string", required: false }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - {
+          label: "Featured image",
+          name: "featuredImage",
+          widget: "object",
+          required: false,
+          optional: true,
+          fields:
+            [
+              { label: "Image", name: "src", widget: "image" },
+              { label: "Image Description", name: "alt", widget: "string" },
+            ],
+        }
+      - { label: "Tagline", name: "tagline", widget: "string", required: false}
+      - { label: "Description", name: "description", widget: "string", required: false}
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Image Gallery",
+          name: "gallery",
+          widget: "list",
+          required: false,
+          optional: true,
+          fields:
+            [
+              { label: "Image", name: "src", widget: "image" },
+              { label: "Image Description", name: "alt", widget: "string" },
+            ],
+        }
+      - {label: "Category", name: "category", widget: "string", default: "post", required: false}
+      - {label: "Tags", name: "tags", widget: "list", default: ["post"], required: false}
+      - {label: "Editor Pick", name: "editorpick", widget: "select", default: "no", options: ["no", "yes"]}
+      - {label: "Layout", name: "layout", widget: "string", default: "post"}
+      - {
+          label: "SEO & Meta",
+          name: "seo",
+          widget: "object",
+          required: false,
+          fields:
+            [
+              { label: "Browser Tab Title", name: "browserTitle", widget: "string", required: false},
+              { label: "Title", name: "title", widget: "string", required: false },
+              { label: "Description", name: "description", widget: "string", required: false },
+            ],
+        }
+  - name: "components"
+    label: "Components"
+    delete: false # Prevent users from deleting documents in this collection
+    label_singular: "Component"
+    editor:
+      preview: false
+    files:
+      - file: "src/components/header/index.md"
+        label: "Header"
+        name: "header"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "header" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility." }
+          - {
+              label: "Social Links",
+              name: "social",
+              widget: "list",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Class", name: "class", widget: "string" },
+                  { label: "Link URL", name: "linkUrl", widget: "string" },
+                ],
+            }
+      - file: "src/components/banner/index.md"
+        label: "Banner"
+        name: "banner"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "banner" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility."}
+          - { label: "Datasource", name: "datasource", widget: "select", default: "manual", options: ["manual", "blog", "shopify"]}
+          - { label: "Header", name: "header", widget: "markdown" }
+          - { label: "Tagline", name: "tagline", widget: "markdown" }
+          - {
+              label: "Banner image",
+              name: "bannerImage",
+              widget: "object",
+              required: false,
+              optional: true,
+              fields:
+                [
+                  { label: "Image", name: "src", widget: "image" },
+                  { label: "Image Description", name: "alt", widget: "string" }
+                ]
+             }
+          - {
+              label: "Actions",
+              name: "actions",
+              widget: "list",
+              required: false,
+              optional: true,
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Class", name: "class", widget: "string" },
+                  { label: "Link", name: "linkUrl", widget: "string" }
+                ],
+            }
+      - file: "src/components/features/index.md"
+        label: "Features"
+        name: "features"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "features" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility." }
+          - { label: "Title", name: "title", widget: "string" }
+          - {
+              label: "Features",
+              name: "features",
+              widget: "list",
+              required: false,
+              optional: true,
+              fields:
+                [
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Class", name: "class", widget: "string" },
+                  { label: "Tagline", name: "tagline", widget: "string" },
+                  {
+                    label: "Link",
+                    name: "link",
+                    widget: "object",
+                    required: false,
+                    optional: true,
+                    fields:
+                    [
+                      { label: "Label", name: "label", widget: "string" },
+                      { label: "Class", name: "class", widget: "string" },
+                      { label: "Link", name: "linkUrl", widget: "string" }
+                    ]
+                    }
+                ],
+            }
+      - file: "src/components/menu/index.md"
+        label: "Menu"
+        name: "menu"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "menu" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility." }
+          - {
+              label: "Menu Items",
+              name: "menuItems",
+              widget: "list",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "link", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link type." },
+                  { label: "ID", name: "id", widget: "string", default: "0" },
+                  { label: "Parent ID", name: "parentid", widget: "string", default: "-1" },
+                ],
+            }
+      - file: "src/components/contact/index.md"
+        label: "Contact"
+        name: "contact"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "contact" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility." }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - {
+              label: "Email / Contact", name: "email", widget: "object",
+              fields:
+              [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "linkUrl", widget: "string", hint: "Use a relative URL (e.g. /contact) if the link is an internal link." },
+              ]
+            }
+      - file: "src/components/latest/index.md"
+        label: "Latest"
+        name: "latest"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "latest" }
+          - { label: "Visibility", name: "visible", widget: "boolean", default: true, hint: "Use to turn on/off component visibility." }
+          - { label: "Title", name: "title", widget: "string" }
+          - {
+              label: "Items",
+              name: "items",
+              widget: "list",
+              required: false,
+              optional: true,
+              fields:
+                [
+                  { label: "Tagline", name: "tagline", widget: "string" },
+                  { label: "Class", name: "class", widget: "string" },
+                  { label: "Link URL", name: "linkUrl", widget: "string" },
+                  {
+                    label: "Image",
+                    name: "image",
+                    widget: "object",
+                    required: false,
+                    optional: true,
+                    fields:
+                      [
+                        { label: "Image", name: "src", widget: "image" },
+                        { label: "Image Description", name: "alt", widget: "string" }
+                      ]
+                   }
+                ],
+            }
+          - {
+              label: "Action",
+              name: "action",
+              widget: "object",
+              required: false,
+              optional: true,
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Class", name: "class", widget: "string" },
+                  { label: "Link", name: "linkUrl", widget: "string" }
+                ],
+            }
+      - file: "src/components/footer/index.md"
+        label: "Footer"
+        name: "footer"
+        editor:
+          preview: false
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "footer" }
+          - { label: "Site Name", name: "siteName", widget: "string" }
+          - { label: "Site Url", name: "siteUrl", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+  - name: 'settings'
+    label: 'Settings'
+    delete: false # Prevent users from deleting documents in this collection
+    editor:
+      preview: false
+    files:
+      - name: 'general'
+        label: 'Site Settings'
+        file: 'static/admin/site_metadata.json'
+        description: 'General Site Settings'
+        fields:
+          - { label: 'Site Title', name: 'title', widget: 'string' }
+          - { label: 'Site Description', name: 'description', widget: 'string' }
+          - { label: 'Site Url', name: 'siteUrl', widget: 'string' }
+          - { label: 'Site Logo', name: 'siteLogo', widget: 'image' }
+          - { label: 'Author', name: 'author', widget: 'string' }
+          - label: 'Frontpage Settings'
+            name: 'frontpage'
+            widget: 'object'
+            fields:
+              - { label: 'Show Articles?', name: 'show_articles', default: true, widget: boolean }
+              - { label: 'Show Products?', name: 'show_products', default: false, widget: boolean }
+          - label: 'Blog Settings'
+            name: 'blog'
+            widget: 'object'
+            fields:
+              - {
+                  label: 'Number of posts on frontpage',
+                  name: front_limit,
+                  widget: number,
+                  min: 1,
+                  max: 10,
+                  default: 6
+                }
+              - { label: 'Default Author', name: author, widget: string }
+              - { label: 'Default Thumbnail', name: thumb, widget: image, class: 'thumb', required: false }
+      - name: 'colors'
+        label: 'Color and Fonts'
+        file: 'static/admin/site_colors_fonts.json'
+        description: 'Color and Fonts Settings'
+        fields:
+          - { label: 'Site accent color', name: 'site_accent_color', widget: 'colorpickers'}
+          - { label: 'Site background color', name: 'site_bg_color', widget: 'colorpickers'}
+          - { label: 'Site background Alt color', name: 'site_bg_altcolor', widget: 'colorpickers'}
+          - { label: 'Site foreground color', name: 'site_fg_color', widget: 'colorpickers'}
+          - { label: 'Font family', name: 'site_font_family', widget: 'fontpicker'}
+          - { label: 'Heading font', name: 'site_heading_font', widget: 'fontpicker'}
+          - { label: 'Fixed font', name: 'site_fixed_font', widget: 'fontpicker'}
+      - name: 'blogging'
+        label: 'Blog'
+        file: 'static/admin/blog_options.json'
+        description: 'Blog Settings'
+        fields:
+           - { label: 'Meta title', name: 'metaTitleTpl', default: 'My Gatsby Blogify - Open4G Media' , widget: string }
+           - { label: 'Meta description', name: 'metaDescriptionTpl', default: 'Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps' , widget: string }
+           - { label: 'Blog path', name: 'basePath', default: '/posts', widget: string }
+           - { label: 'Blog post path', name: 'articlePath', default: 'false' , widget: string }
+           - { label: 'Blog tagline', name: 'blogTagline', default: 'My Blogify Articles' , widget: string }
+           - { label: 'Read more button label', name: 'readmoreBtnlabel', default: 'Read more' , widget: string }
+      - name: 'shopify'
+        label: 'Shopify'
+        file: 'static/admin/shop_options.json'
+        description: 'Shopify Settings'
+        fields:
+           - { label: 'Shop path', name: 'basePath', default: '/products', widget: string }
+           - { label: 'Product path', name: 'productPath', default: '/product' , widget: string }
+           - { label: 'Tag/Category path', name: 'tagPath', default: 'false' , widget: string }
+           - { label: 'Shop tagline', name: 'shopTagline', default: 'My Gatsby + Shopify Store' , widget: string }
+           - { label: 'Details button label', name: 'shopBtnlabel', default: 'Learn more' , widget: string }
+           - { label: 'Shop currency', name: 'shopCurrency', default: 'USD' , widget: string }
+           - { label: 'Shop meta title template', name: 'shopMetaTitleTpl', default: 'My Shopify Store' , widget: string }
+           - { label: 'Shop meta description Template', name: 'shopMetaDescriptionTpl', default: 'Specialty store for every thing!' , widget: string }
+           - { label: 'Category slogan template', name: 'categorySloganTpl', default: 'Best %SHOPIFYPRODUCTTAG% products you find at %STORENAME%' , widget: string }
+           - { label: 'Tag meta title template', name: 'tagMetaTitleTpl', default: 'Best %SHOPIFYPRODUCTTAG% products you find at %STORENAME%' , widget: string }
+           - { label: 'Tag meta description Template', name: 'tagMetaDescriptionTpl', default: '%STORENAME% store specialty for %SHOPIFYPRODUCTTAG%.' , widget: string }
+           - { label: 'Item meta title template', name: 'itemMetaTitleTpl', default: 'Buy %SHOPIFYPRODUCTNAME% - %STORENAME%' , widget: string }
+           - { label: 'Item meta description Template', name: 'itemMetaDescriptionTpl', default: 'Specialty store for %SHOPIFYPRODUCTTAG%. Who compares purchase in %STORENAME%. Pay a visit!' , widget: string }
+           - { label: 'Verbose logging?', name: 'verbose', default: true , widget: boolean }
